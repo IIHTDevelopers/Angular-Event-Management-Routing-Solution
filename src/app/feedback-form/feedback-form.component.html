@@ -1,0 +1,23 @@
+<h2>Select Event</h2>
+<select [(ngModel)]="selectedEventId" (ngModelChange)="selectEvent($event)" name="eventSelector">
+    <option [ngValue]="null" disabled selected>Select an event</option>
+    <!-- <option [ngValue]="null" disabled>Select an event</option> -->
+    <option *ngFor="let event of events" [ngValue]="event.id">
+        {{ event.name }} - {{ event.date }}
+    </option>
+</select>
+
+<div *ngIf="selectedEvent">
+    <h3>Event Summary</h3>
+    <p>Name: {{selectedEvent.name}}</p>
+    <p>Date: {{selectedEvent.date}}</p>
+    <p>Time: {{selectedEvent.time}}</p>
+    <p>Venue: {{selectedEvent.venue}}</p>
+
+    <h3>Submit Feedback</h3>
+    <form (ngSubmit)="submitFeedback()">
+        <input [(ngModel)]="guestEmail" name="guestEmail" placeholder="Your Email" required>
+        <textarea [(ngModel)]="comments" name="comments" placeholder="Your Feedback" required></textarea>
+        <button type="submit">Submit Feedback</button>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+<h2>Select Event</h2>
+<select [(ngModel)]="selectedEventId" (ngModelChange)="selectEvent($event)" name="eventSelector">
+    <option [ngValue]="null" disabled selected>Select an event</option>
+    <!-- <option [ngValue]="null" disabled>Select an event</option> -->
+    <option *ngFor="let event of events" [ngValue]="event.id">
+        {{ event.name }} - {{ event.date }}
+    </option>
+</select>
+
+<div *ngIf="selectedEvent">
+    <h3>Event Summary</h3>
+    <p>Name: {{selectedEvent.name}}</p>
+    <p>Date: {{selectedEvent.date}}</p>
+    <p>Time: {{selectedEvent.time}}</p>
+    <p>Venue: {{selectedEvent.venue}}</p>
+
+    <h3>Add Guest</h3>
+    <form (ngSubmit)="addGuest()">
+        <input [(ngModel)]="newGuest.name" name="guestName" placeholder="Guest Name" required>
+        <input [(ngModel)]="newGuest.email" name="guestEmail" placeholder="Guest Email" required>
+        <button type="submit">Add Guest</button>
+    </form>
+</div>

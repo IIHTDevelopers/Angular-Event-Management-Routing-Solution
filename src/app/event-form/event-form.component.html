@@ -1,0 +1,8 @@
+<h2>Create New Event</h2>
+<form (ngSubmit)="addEvent()">
+    <input [(ngModel)]="event.name" name="name" placeholder="Event Name" required>
+    <input [(ngModel)]="event.date" name="date" type="date" required>
+    <input [(ngModel)]="event.time" name="time" type="time" required>
+    <input [(ngModel)]="event.venue" name="venue" placeholder="Venue" required>
+    <button type="submit">Add Event</button>
+</form>
